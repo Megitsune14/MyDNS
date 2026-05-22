@@ -1,0 +1,23 @@
+{
+  "name": "mydns",
+  "private": true,
+  "workspaces": [
+    "packages/*",
+    "apps/*"
+  ],
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "npm run dev -w @mydns/server",
+    "dev:web": "npm run dev -w @mydns/web",
+    "dev:all": "concurrently \"npm run dev\" \"npm run dev:web\"",
+    "build": "npm run build -w @mydns/shared && npm run build -w @mydns/web && npm run build -w @mydns/server",
+    "start": "npm run start -w @mydns/server",
+    "typecheck": "npm run typecheck -w @mydns/shared && npm run typecheck -w @mydns/server && npm run typecheck -w @mydns/web"
+  },
+  "devDependencies": {
+    "concurrently": "^9.1.2",
+    "typescript": "^5.8.3"
+  }
+}
