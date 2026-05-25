@@ -9,12 +9,12 @@
     "node": ">=20"
   },
   "scripts": {
-    "dev": "npm run dev -w @mydns/server",
-    "dev:web": "npm run dev -w @mydns/web",
-    "dev:all": "concurrently \"npm run dev\" \"npm run dev:web\"",
-    "build": "npm run build -w @mydns/shared && npm run build -w @mydns/web && npm run build -w @mydns/server",
-    "start": "npm run start -w @mydns/server",
-    "typecheck": "npm run typecheck -w @mydns/shared && npm run typecheck -w @mydns/server && npm run typecheck -w @mydns/web"
+    "dev": "npm run dev -w @mydns/backend",
+    "dev:frontend": "npm run dev -w @mydns/frontend",
+    "dev:all": "concurrently \"npm run dev\" \"npm run dev:frontend\"",
+    "build": "npm run build -w @mydns/shared && npm run build -w @mydns/frontend && npm run build -w @mydns/backend",
+    "start": "npm run start -w @mydns/backend",
+    "typecheck": "npm run typecheck -w @mydns/shared && npm run typecheck -w @mydns/backend && npm run typecheck -w @mydns/frontend"
   },
   "devDependencies": {
     "concurrently": "^9.1.2",

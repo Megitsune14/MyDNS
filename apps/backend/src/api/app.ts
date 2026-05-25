@@ -307,7 +307,7 @@ export function createApp(
 }
 
 export function registerProductionStatic(app: Hono): void {
-  const webDist = join(dirname(fileURLToPath(import.meta.url)), "../../../web/dist");
+  const webDist = join(dirname(fileURLToPath(import.meta.url)), "../../../frontend/dist");
   app.use("/assets/*", serveStatic({ root: webDist }));
   app.get("*", serveStatic({ root: webDist, path: "index.html" }));
 }

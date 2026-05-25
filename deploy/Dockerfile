@@ -20,10 +20,10 @@ ENV NODE_ENV=production
 COPY --from=builder /app/package.json ./
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/packages/shared ./packages/shared
-COPY --from=builder /app/apps/server/dist ./apps/server/dist
-COPY --from=builder /app/apps/server/package.json ./apps/server/
-COPY --from=builder /app/apps/web/dist ./apps/web/dist
+COPY --from=builder /app/apps/backend/dist ./apps/backend/dist
+COPY --from=builder /app/apps/backend/package.json ./apps/backend/
+COPY --from=builder /app/apps/frontend/dist ./apps/frontend/dist
 
 EXPOSE 53/udp 53/tcp 3000
 
-CMD ["node", "apps/server/dist/index.js"]
+CMD ["node", "apps/backend/dist/index.js"]

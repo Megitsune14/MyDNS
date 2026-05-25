@@ -280,9 +280,28 @@ export const repositories = {
         { $match: { timestamp: { $gte: since } } },
         {
           $group: {
-            _id: { $dateTrunc: { date: "$timestamp", unit: "hour" } },
+            _id: {
+              y: { $year: "$timestamp" },
+              m: { $month: "$timestamp" },
+              d: { $dayOfMonth: "$timestamp" },
+              h: { $hour: "$timestamp" },
+            },
             total: { $sum: 1 },
             blocked: { $sum: { $cond: [{ $eq: ["$action", "blocked"] }, 1, 0] } },
+          },
+        },
+        {
+          $project: {
+            _id: {
+              $dateFromParts: {
+                year: "$_id.y",
+                month: "$_id.m",
+                day: "$_id.d",
+                hour: "$_id.h",
+              },
+            },
+            total: 1,
+            blocked: 1,
           },
         },
         { $sort: { _id: 1 } },
